@@ -1,8 +1,10 @@
 const { Router } = require('express');
-const { criar } = require('../controllers/livroController');
+const { criar, listar } = require('../controllers/livroController');
 
 const router = Router();
 
 router.post("/", criar);
+
+router.get("/", listar)
 
 module.exports = router;
