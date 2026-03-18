@@ -14,4 +14,8 @@ const listarLivros = async () => {
   return livros;
 }
 
-module.exports = { criarLivro, listarLivros };
+const listaLivro = async (id) => {
+  return await Livro.findByPk(id); 
+}
+
+module.exports = { criarLivro, listarLivros, listaLivro };

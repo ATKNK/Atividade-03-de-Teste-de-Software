@@ -1,4 +1,4 @@
-const { criarLivro, listarLivros } = require('../services/livroService');
+const { criarLivro, listarLivros, listaLivro } = require('../services/livroService');
 
 const criar = async (req, res) => {
     const { titulo, autor } = req.body;
@@ -16,4 +16,10 @@ const listar = async (req, res) => {
     
 }
 
-module.exports = { criar, listar };
+const listarLivro = async (req, res) => {
+    const id = req.params.id;
+    const livro = await listaLivro(id)
+    return res.status(200).json(livro);
+}
+
+module.exports = { criar, listar, listarLivro };
