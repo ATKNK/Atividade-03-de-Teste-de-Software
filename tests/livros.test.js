@@ -29,3 +29,8 @@ test('PUT /livros:id modifica um livro especifico', async () => {
     expect(res.body.titulo).toEqual('Clean Code');
     expect(res.body.autor).toEqual('Martin Code');
 });
+
+test('DELETE /livros:id deleta um livro especifico', async () => {
+    const res = await request(api).delete('/livros/1');
+    expect(res.status).toBe(204);
+});
