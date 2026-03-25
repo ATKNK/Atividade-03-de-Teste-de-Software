@@ -25,7 +25,7 @@ test('GET /livros:id retorna um livro específico', async () => {
 
 test('PUT /livros:id modifica um livro especifico', async () => {
     const res = await request(api).put('/livros/1').send({titulo: 'Clean Code', autor: 'Martin Code'});
-    expect(res.body.titulo).toBe(200);
+    expect(res.status).toBe(200);
     expect(res.body.titulo).toEqual('Clean Code');
     expect(res.body.autor).toEqual('Martin Code');
 });
