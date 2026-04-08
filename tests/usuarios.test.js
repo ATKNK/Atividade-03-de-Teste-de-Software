@@ -15,6 +15,7 @@ describe("Usuários", () => {
     expect(res.data).toHaveProperty("id");
     expect(res.data).toHaveProperty("nome");
     expect(res.data).toHaveProperty("email");
+    expect(res.data).toHaveProperty("tipo");
   });
 
   test("deve retornar 404 para usuário inexistente", async () => {
@@ -37,7 +38,7 @@ describe("Usuários", () => {
     expect(res.data.nome).toBe("João Silva");
     expect(res.data.tipo).toBe("aluno");
   });
-0
+
   test("deve retornar 400 ao criar usuário sem nome", async () => {
     try {
       await axios.post(`${api}/usuarios`, {
@@ -81,14 +82,14 @@ describe("Usuários", () => {
       tipo: "aluno",
     });
 
-    const res = await axios.put(`${api}/usuarios/${criado.data.id}`, { nome: "Pedro Novo" });
+    const res = await axios.put(`${api}/usuarios/${criado.data.id}`, { nome: "Pedro Novo", email: "novoemail@teste", senha: "148", tipo: "testado" });
     expect(res.status).toBe(200);
     expect(res.data.nome).toBe("Pedro Novo");
   });
 
   test("deve retornar 404 ao atualizar usuário inexistente", async () => {
     try {
-      await axios.put(`${api}/usuarios/99999`, { nome: "Ninguém" });
+      await axios.put(`${api}/usuarios/99999`, { nome: "Ninguém",  email: "novoemail@teste", senha: "148", tipo: "testado"});
     } catch (err) {
       expect(err.response.status).toBe(404);
     }
@@ -103,7 +104,7 @@ describe("Usuários", () => {
     });
 
     const res = await axios.delete(`${api}/usuarios/${criado.data.id}`);
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(204);
   });
 
   test("deve retornar 404 ao deletar usuário inexistente", async () => {
