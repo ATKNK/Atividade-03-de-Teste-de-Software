@@ -18,4 +18,18 @@ const listaLivro = async (id) => {
   return await Livro.findByPk(id); 
 }
 
-module.exports = { criarLivro, listarLivros, listaLivro };
+const editarLivro = async (titulo, autor, id) => {
+  const livro = await Livro.findByPk(id);
+  await livro.update( {titulo, autor});
+  return {
+    id: livro.id,
+    titulo: livro.titulo,
+    autor: livro.autor,
+  };
+}
+
+const excluirLivro = async (id) => {
+  await Livro.destroy({where: { id }})
+}
+
+module.exports = { criarLivro, listarLivros, listaLivro, editarLivro, excluirLivro };
