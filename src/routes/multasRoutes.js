@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { criar, listar, deletar, buscarPorId, atualizar, buscarPorEmprestimo, quitar } = require('../controllers/multasController');
+const { criar, listar, deletar, buscarPorId, atualizar, buscarPorEmprestimo, quitar } = require('../controllers/multaController');
 
 const router = Router();
 
